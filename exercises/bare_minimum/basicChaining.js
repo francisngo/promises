@@ -21,25 +21,14 @@ var fetchProfileAndWriteToFile = function(readFilePath, writeFilePath) {
   // console.log('writeFilePath:', writeFilePath);
 
   return pluckFirstLineFromFileAsync.pluckFirstLineFromFileAsync(readFilePath)
-  .then(getGitHubProfile.getGitHubProfileAsync)
-  .then(function(gitHubProfile) {
-    console.log('logged');
-    return writeFileASync(writeFilePath, JSON.stringify(gitHubProfile));
-  });
+    .then(getGitHubProfile.getGitHubProfileAsync)
+    .then(function(gitHubProfile) {
+      console.log('logged');
+      return writeFileASync(writeFilePath, JSON.stringify(gitHubProfile));
+    });
 };
 
 // Export these functions so we can test them
 module.exports = {
   fetchProfileAndWriteToFile: fetchProfileAndWriteToFile
 };
-
-
-// var fetchProfileAndWriteToFile = function(readFilePath, writeFilePath) {
-//   // The outermost `return` lets us continue the chain
-//   // after an invocation of `addNewUserToDatabaseAsync`
-//   return pluckFirstLineFromFileAsync.pluckFirstLineFromFileAsync(readFilePath)
-//     .then(getGitHubProfile.getGitHubProfileAsync)
-//     .then(function(gitHubProfile) {
-//       // write the file???
-//     });
-// };
